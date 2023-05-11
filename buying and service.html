@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Phone Buying Calculator</title>
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+
+    h2{
+      text-align: center;
+    }
+   
+    form{
+      margin: auto;
+      background-color: rgb(89, 156, 234);
+      max-width: 500px;
+      max-height: max-content;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      color: rgb(3, 3, 3);
+    }
+
+    body{
+      background-image: url('https://wallpaperaccess.com/full/4570700.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+	<h2>Phone Buying Calculator</h2>
+	<form>
+    <div class="form-center">
+		<label for="budget">Enter Your Budget: ₹</label>
+		<input type="number" id="budget" name="budget" required><br><br>
+
+		<label for="brand">Select a Brand:</label>
+		<select id="brand" name="brand">
+			<option value="Samsung">Samsung</option>
+			<option value="Apple">Apple</option>
+			<option value="Google">Google</option>
+			<option value="OnePlus">OnePlus</option>
+			<option value="Xiaomi">Xiaomi</option>
+		</select><br><br>
+
+		<label for="model">Select a Model:</label>
+		<select id="model" name="model">
+			<option value="Samsung Galaxy S21">Samsung Galaxy S21</option>
+			<option value="iPhone 12">iPhone 12</option>
+			<option value="Google Pixel 5">Google Pixel 5</option>
+			<option value="OnePlus 9 Pro">OnePlus 9 Pro</option>
+			<option value="Xiaomi Mi 11">Xiaomi Mi 11</option>
+		</select><br><br>
+
+		<label for="storage">Select Storage Capacity:</label>
+		<select id="storage" name="storage">
+			<option value="64">64GB</option>
+			<option value="128">128GB</option>
+			<option value="256">256GB</option>
+			<option value="512">512GB</option>
+		</select><br><br>
+
+		<label for="accessories">Select Accessories:</label><br>
+		<input type="checkbox" id="charger" name="charger" value="1000">
+		<label for="charger">Charger (₹1000)</label><br>
+		<input type="checkbox" id="case" name="case" value="300">
+		<label for="case">Case (₹300)</label><br>
+		<input type="checkbox" id="screen-protector" name="screen-protector" value="250">
+		<label for="screen-protector">Screen Protector (₹250)</label><br><br>
+
+		<button type="button" onclick="calculateTotal()">Calculate Total</button>
+		<button type="reset">Reset</button><br><br>
+
+		<label for="total">Total Cost: ₹</label>
+		<input type="text" id="total" name="total" readonly>
+    </div>
+	</form>
+
+	<script>
+		function calculateTotal() {
+  const budget = parseFloat(document.getElementById("budget").value);
+  const modelPrice = getModelPrice();
+  const accessoriesPrice = getAccessoriesPrice();
+  const total = modelPrice + accessoriesPrice;
+  
+  if (budget < total) {
+    alert("Sorry, your budget is not enough to buy the selected phone and accessories.");
+  } else {
+    document.getElementById("total").value = total.toFixed(2);
+  }
+}
+
+function getModelPrice() {
+  const brand = document.getElementById("brand").value;
+  const model = document.getElementById("model").value;
+  const storage = parseInt(document.getElementById("storage").value);
+  
+  let modelPrice;
+  switch (brand) {
+    case "Samsung":
+      switch (model) {
+        case "Samsung Galaxy S21":
+          modelPrice = 60000;
+          break;
+        // Add more Samsung models and prices here
+      }
+      break;
+    case "Apple":
+      switch (model) {
+        case "iPhone 12":
+          modelPrice = 70000;
+          break;
+        // Add more Apple models and prices here
+      }
+      break;
+    case "Google":
+      switch (model) {
+        case "Google Pixel 5":
+          modelPrice = 35000;
+          break;
+        // Add more Google models and prices here
+      }
+      break;
+    case "OnePlus":
+      switch (model) {
+        case "OnePlus 9 Pro":
+          modelPrice = 40000;
+          break;
+        // Add more OnePlus models and prices here
+      }
+      break;
+    case "Xiaomi":
+      switch (model) {
+        case "Xiaomi Mi 11":
+          modelPrice = 15000;
+          break;
+        // Add more Xiaomi models and prices here
+      }
+      break;
+    default:
+      modelPrice = 0;
+  }
+  
+  return modelPrice + getStoragePrice(storage);
+}
+
+function getStoragePrice(storage) {
+  let storagePrice = 0;
+  
+  switch (storage) {
+    case 64:
+      storagePrice = 0;
+      break;
+    case 128:
+      storagePrice = 1000;
+      break;
+    case 256:
+      storagePrice = 2000;
+      break;
+    case 512:
+      storagePrice = 4000;
+      break;
+    default:
+      storagePrice = 0;
+  }
+  
+  return storagePrice;
+}
+
+function getAccessoriesPrice() {
+  let accessoriesPrice = 0;
+  
+  const charger = document.getElementById("charger");
+  if (charger.checked) {
+    accessoriesPrice += parseFloat(charger.value);
+  }
+  
+  const phoneCase = document.getElementById("case");
+  if (phoneCase.checked) {
+    accessoriesPrice += parseFloat(phoneCase.value);
+  }
+  
+  const screenProtector = document.getElementById("screen-protector");
+  if (screenProtector.checked) {
+    accessoriesPrice += parseFloat(screenProtector.value);
+  }
+  
+  return accessoriesPrice;
+}
+</script>
+</body>
+</html>

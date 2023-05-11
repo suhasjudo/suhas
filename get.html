@@ -1,0 +1,98 @@
+<html>
+<head>
+<style>
+.div1 {
+  height: 840px;
+  width: 40%;
+  border: 3px outset rgb(0, 0, 0);
+  background-image: url('https://cdn.dribbble.com/users/2444807/screenshots/6367747/mi-casita.jpg');    
+  text-align: left;
+  margin: auto;
+  padding: 10px;
+  
+  min-height: 500px;
+
+ 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+body{
+  background-color: white;
+}
+</style>
+<title>form</title>
+</head>
+<center><h1 style="color:red";>REDMI SERVICE CENTER</h1></center>
+<div class="div1">
+    <h3>Customer Details</h3>
+<div onmouseover="mOver(this)" onmouseout="mOut(this)" 
+
+</div>
+
+<script>
+
+
+
+function formvalidate()
+{
+    var fn=document.f2.fname.value;
+    var ln=document.f2.lname.value;
+    var car=document.f2.cn.value;
+   
+var errors =[];
+  if(fn=="")
+    errors[errors.length]= "First-Name must be filled out";
+  if(ln=="")
+    errors[errors.length]= "Last-Name must be filled out";
+  if(fn!==""&&ln!=="") {
+    if(fn==ln)
+      errors[errors.length]= "First-Name and Last-Name must be different";
+  if(car=="")
+    errors[errors.length]= "number must be filled out";
+if(document.f2.a.checked==0 && document.f2.b.checked==0 && document.f2.d.checked==0 && document.f2.s.checked==0)
+      errors[errors.length]= "number must be given"; 
+  }
+  
+  if(errors.length > 0) 
+      reportErrors(errors);
+  function reportErrors(errors){
+    var msg = "Please Enter Valid Data!\n";
+    for (var i = 0; i<errors.length; i++) {
+      var numError = i + 1;
+      msg += "\n" + numError + ". " + errors[i];
+      }
+      alert(msg);
+  }
+}  
+</script><br>
+
+
+   <form name="f2" onsubmit="formvalidate()" action="http://localhost:8002" method="get">
+   <fieldset>
+   <label for="name">First Name:<input type="text" name="fname" id="fname" title="Enter your first name" placeholder="Name in captial " ></label><br><br>
+   <label for="form">Last Name:<input type="text" id="lname"  title="Enter your second name" placeholder="Initial only" ></label><br><br>
+    <label for="phone">Phone number:</label>
+    <input type="text"  pattern="[6789][0-9]{9}" name="phn" placeholder="+91" required><br><br>
+    Address:<textarea name="message" rows="10" cols="30"></textarea><div><br>
+         
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter email" pattern="[^ @]*@[^ @]*" name="email">
+                </label>
+                
+
+                <fieldset>
+                    <legend><h3><i>SERVICE-Check-out Info</i></h3></legend>
+                    <label for="text">MOBILE MODEL:<input type="text" id="cn" title="Ex: Mi & Xiaomi" placeholder="Xiaomi & Mi" ></label><br><br>
+                    <label for="text">Complient<input type="text" id="form"  title="Unique no" placeholder="enter the issue" ></label><br><br>
+                    <label for="form">SERVICE Date : <input type="date" id="form"></label><label for="form"> 
+                     <br><br>Mobile Warrenty VAlidity : <input type="date" id="form"></label><br><br>
+                    Mobile Issue:<input type="radio" id="b">Physical Damage<input type="radio" id="a">Software problem<input type="radio" id="s">Technical issue<input type="radio" id="d">Others<br><br>
+                    
+                     Feedback:<textarea name="message" rows="1" cols="50"></textarea><div><br>
+                     
+                     </fieldset><br>
+                     <center><b><input type="submit" value="Register" class="regbtn"></b></center>
+              
+  </form>

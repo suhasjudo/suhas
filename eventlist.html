@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            java event listener
+        </title>
+    </head>
+    <body>
+        <div id="myElement">Touch me!</div>
+        <div id="mouseover">move cursor over find me... now check in console</div>
+        <script>
+            const element = document.getElementById('myElement');
+            element.addEventListener('touchstart', function(event) {
+                event.preventDefault();
+                console.log('You touched the element!');
+            });
+
+
+            const element1 = document.getElementById('myElement');
+            element1.addEventListener('click', function(event) {
+                console.log('You clicked the element!');
+            });
+            const element2 = document.getElementById('myElement');
+            element2.addEventListener('dblclick', function(event) {
+            console.log('You double-clicked the element!')
+            });
+
+            const element3 = document.getElementById('myElement');
+            element3.addEventListener('mousedown', function(event) {
+            console.log('You pressed down on the element!');
+            });
+
+            const element4 = document.getElementById('myElement');
+            element4.addEventListener('mousemove', function(event) {
+            console.log('You moved the mouse over the element!');
+            });
+
+            const element5 = document.getElementById('mouseleave');
+            element5.addEventListener('mouseleave', function(event) {
+            console.log('The mouse left the element!');
+            });
+
+            const element6 = document.getElementById('mouseover');
+            element6.addEventListener('mouseover', function(event) {
+            console.log('The mouse is over the element!');
+            });
+        </script>
+    </body>
+</html>
